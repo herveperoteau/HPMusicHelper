@@ -42,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		09A0BE031797B3200025B566 /* HPMusicHelper.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = HPMusicHelper.podspec; sourceTree = "<group>"; };
 		09C51FE417965DEC001E5F22 /* libHPMusicHelper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHPMusicHelper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C51FE717965DEC001E5F22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		09C51FEB17965DEC001E5F22 /* HPMusicHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HPMusicHelper-Prefix.pch"; sourceTree = "<group>"; };
@@ -53,7 +54,6 @@
 		09C51FFF17965DEC001E5F22 /* HPMusicHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HPMusicHelperTests-Info.plist"; sourceTree = "<group>"; };
 		09C5200117965DEC001E5F22 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09C5200317965DEC001E5F22 /* HPMusicHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPMusicHelperTests.m; sourceTree = "<group>"; };
-		09C5205B1797B04A001E5F22 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 		09C51FDB17965DEC001E5F22 = {
 			isa = PBXGroup;
 			children = (
-				09C5205B1797B04A001E5F22 /* Podfile */,
+				09A0BE031797B3200025B566 /* HPMusicHelper.podspec */,
 				09C51FE917965DEC001E5F22 /* HPMusicHelper */,
 				09C51FFD17965DEC001E5F22 /* HPMusicHelperTests */,
 				09C51FE617965DEC001E5F22 /* Frameworks */,
@@ -405,6 +405,7 @@
 				09C5200917965DEC001E5F22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09C5200A17965DEC001E5F22 /* Build configuration list for PBXNativeTarget "HPMusicHelperTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +414,7 @@
 				09C5200C17965DEC001E5F22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
