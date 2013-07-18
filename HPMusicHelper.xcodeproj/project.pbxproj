@@ -53,6 +53,7 @@
 		09C51FFF17965DEC001E5F22 /* HPMusicHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HPMusicHelperTests-Info.plist"; sourceTree = "<group>"; };
 		09C5200117965DEC001E5F22 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09C5200317965DEC001E5F22 /* HPMusicHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPMusicHelperTests.m; sourceTree = "<group>"; };
+		09C5205B1797B04A001E5F22 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 		09C51FDB17965DEC001E5F22 = {
 			isa = PBXGroup;
 			children = (
+				09C5205B1797B04A001E5F22 /* Podfile */,
 				09C51FE917965DEC001E5F22 /* HPMusicHelper */,
 				09C51FFD17965DEC001E5F22 /* HPMusicHelperTests */,
 				09C51FE617965DEC001E5F22 /* Frameworks */,

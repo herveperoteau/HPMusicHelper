@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "HPMusicHelper.h"
 
 @interface HPMusicHelperTests : XCTestCase
 
@@ -28,9 +29,65 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testCleanArtistTheStrokes
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSString *name = @"The Strokes";
+    NSString *expected = @"strokes";
+    
+    NSString *result = [HPMusicHelper cleanArtistName:name];
+    
+    NSLog(@"cleanArtistName name=%@ expected=%@ result=%@", name, expected, result);
+    
+    XCTAssertEqualObjects(result, expected, @"cleanArtistName name=%@ %@ != %@ !!!", name, result, expected);
 }
+
+- (void)testCleanArtistTheStrokes2
+{
+    NSString *name = @" The Strokes";
+    NSString *expected = @"strokes";
+    
+    NSString *result = [HPMusicHelper cleanArtistName:name];
+    
+    NSLog(@"cleanArtistName name=%@ expected=%@ result=%@", name, expected, result);
+    
+    XCTAssertEqualObjects(result, expected, @"cleanArtistName name=%@ %@ != %@ !!!", name, result, expected);
+}
+
+- (void)testCleanArtistTheStrokes3
+{
+    NSString *name = @"Les Strokes";
+    NSString *expected = @"strokes";
+    
+    NSString *result = [HPMusicHelper cleanArtistName:name];
+    
+    NSLog(@"cleanArtistName name=%@ expected=%@ result=%@", name, expected, result);
+    
+    XCTAssertEqualObjects(result, expected, @"cleanArtistName name=%@ %@ != %@ !!!", name, result, expected);
+}
+
+- (void)testCleanSong1
+{
+    NSString *name = @"Scream & Shout (feat. Britney Spears)";
+    NSString *expected = @"scream & shout";
+    
+    NSString *result = [HPMusicHelper cleanSongTitle:name];
+    
+    NSLog(@"cleanSongTitle name=%@ expected=%@ result=%@", name, expected, result);
+    
+    XCTAssertEqualObjects(result, expected, @"cleanSongTitle name=%@ %@ != %@ !!!", name, result, expected);
+}
+
+- (void)testCleanSong2
+{
+    NSString *name = @"Test accentué à boût de nèrf";
+    NSString *expected = @"test accentue a bout de nerf";
+    
+    NSString *result = [HPMusicHelper cleanSongTitle:name];
+    
+    NSLog(@"cleanSongTitle name=%@ expected=%@ result=%@", name, expected, result);
+    
+    XCTAssertEqualObjects(result, expected, @"cleanSongTitle name=%@ %@ != %@ !!!", name, result, expected);
+}
+
 
 @end

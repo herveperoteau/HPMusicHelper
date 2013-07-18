@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface HPMusicHelper : NSObject
+
+
+// Ex : The Strokes => strokes
++(NSString *) cleanArtistName:(NSString *) artist;
+
+// Ex: Scream & Shout (feat. Britney Spears) => scream & shout
++(NSString *) cleanSongTitle:(NSString *) title;
+
 
 @end
