@@ -68,8 +68,8 @@
     NSString *result = title;
     
     result = [self cleanString:result after:@"("];
-    result = [self cleanString:result after:@"ft"];
-    result = [self cleanString:result after:@"feat"];
+    result = [self cleanString:result after:@" ft"];  // Attention si on met ft sans l'espace ca clean Daft Punk en da !!!
+    result = [self cleanString:result after:@" feat"];
     
     return result;
 }

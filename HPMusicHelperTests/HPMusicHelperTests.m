@@ -65,6 +65,19 @@
     XCTAssertEqualObjects(result, expected, @"cleanArtistName name=%@ %@ != %@ !!!", name, result, expected);
 }
 
+- (void)testCleanArtistDaftPunk
+{
+    NSString *name = @"DaftPunk";
+    NSString *expected = @"daftpunk";
+    
+    NSString *result = [HPMusicHelper cleanArtistName:name];
+    
+    NSLog(@"cleanArtistName name=%@ expected=%@ result=%@", name, expected, result);
+    
+    XCTAssertEqualObjects(result, expected, @"cleanArtistName name=%@ %@ != %@ !!!", name, result, expected);
+}
+
+
 - (void)testCleanSong1
 {
     NSString *name = @"Scream & Shout (feat. Britney Spears)";
