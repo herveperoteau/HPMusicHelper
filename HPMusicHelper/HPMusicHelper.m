@@ -8,12 +8,37 @@
 
 #import "HPMusicHelper.h"
 
+static NSMutableDictionary *cacheArtist;
+
 @implementation HPMusicHelper
 
 // Ex : The Strokes => strokes
 +(NSString *) cleanArtistName:(NSString *) artist {
 
-    return [HPMusicHelper cleanInfos:artist];
+    NSString *cleanResult;
+    
+    // check in cache
+    if (cacheArtist) {
+        
+        cleanResult = [cacheArtist valueForKey:artist];
+        
+        if (cleanResult) {
+            
+            return cleanResult;
+        }
+    }
+    
+    // not in cache, calculate ...
+    cleanResult = [HPMusicHelper cleanInfos:artist];
+    
+    // save in cache
+    if (cacheArtist == nil) {
+        cacheArtist = [[NSMutableDictionary alloc] init];
+    }
+    
+    [cacheArtist setValue:cleanResult forKey:artist];
+    
+    return cleanResult;
 }
 
 //    Ex: Scream & Shout (feat. Britney Spears) => scream & shout
