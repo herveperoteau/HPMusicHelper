@@ -18,5 +18,7 @@
 // Ex: Scream & Shout (feat. Britney Spears) => scream & shout
 +(NSString *) cleanSongTitle:(NSString *) title;
 
+// Ex: Loud (Deluxe Edition) => lound
++(NSString *) cleanAlbumTitle:(NSString *) title;
 
 @end

@@ -47,6 +47,19 @@ static NSMutableDictionary *cacheArtist;
     return [HPMusicHelper cleanInfos:title];
 }
 
++(NSString *) cleanAlbumTitle:(NSString *) title {
+    
+    NSString *result = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSLocale *locale = [NSLocale currentLocale];
+    result = [result lowercaseStringWithLocale:locale];
+    
+    result = [HPMusicHelper cleanAccents:result];
+    result = [HPMusicHelper cleanInfosFeat:result];
+    
+    return result;
+}
+
 +(NSString *) cleanInfos:(NSString *) info {
 
     NSString *result = [info stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
