@@ -55,7 +55,7 @@ static NSMutableDictionary *cacheArtist;
     result = [result lowercaseStringWithLocale:locale];
     
     result = [HPMusicHelper cleanAccents:result];
-    result = [HPMusicHelper cleanInfosFeat:result];
+    result = [HPMusicHelper cleanParenthese:result];
     
     return result;
 }
@@ -70,6 +70,7 @@ static NSMutableDictionary *cacheArtist;
     result = [HPMusicHelper cleanAccents:result];
     result = [HPMusicHelper cleanPrefixe:result];
     result = [HPMusicHelper cleanInfosFeat:result];
+    result = [HPMusicHelper cleanParenthese:result];
     
     return result;
 }
@@ -105,12 +106,22 @@ static NSMutableDictionary *cacheArtist;
     
     NSString *result = title;
     
-    result = [self cleanString:result after:@"("];
     result = [self cleanString:result after:@" ft"];  // Attention si on met ft sans l'espace ca clean Daft Punk en da !!!
     result = [self cleanString:result after:@" feat"];
     
     return result;
 }
+
++(NSString *) cleanParenthese:(NSString *) title {
+    
+    NSString *result = title;
+    
+    result = [self cleanString:result after:@"("];
+    result = [self cleanString:result after:@"["];
+    
+    return result;
+}
+
 
 +(NSString *) cleanString:(NSString *)str after:(NSString *)aVirer {
     
