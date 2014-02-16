@@ -114,5 +114,21 @@
     XCTAssertEqualObjects(result, expected, @"cleanSongTitle name=%@ %@ != %@ !!!", name, result, expected);
 }
 
+- (void)testCleanAlbumTitle
+{
+    NSString *result = [HPMusicHelper cleanAlbumTitle:@"01- Blabla"];
+    NSLog(@"testCleanAlbumTitle result=%@", result);
+
+    result = [HPMusicHelper cleanAlbumTitle:@"01, Blabla"];
+    NSLog(@"testCleanAlbumTitle result=%@", result);
+
+    result = [HPMusicHelper cleanAlbumTitle:@"01 Blabla"];
+    NSLog(@"testCleanAlbumTitle result=%@", result);
+
+    result = [HPMusicHelper cleanAlbumTitle:@"01: Blabla"];
+    NSLog(@"testCleanAlbumTitle result=%@", result);
+
+}
+
 
 @end

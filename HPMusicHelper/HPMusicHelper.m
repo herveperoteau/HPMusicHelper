@@ -57,6 +57,13 @@ static NSMutableDictionary *cacheArtist;
     result = [HPMusicHelper cleanAccents:result];
     result = [HPMusicHelper cleanParenthese:result];
     
+    //01, title
+    NSRange rangePrefixNumber = [result rangeOfString:@"^\\d{1,2}[ *,:-]" options:NSRegularExpressionSearch];
+    if (rangePrefixNumber.location != NSNotFound) {
+        result = [result substringFromIndex:rangePrefixNumber.location+rangePrefixNumber.length];
+        result = [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
+    
     return result;
 }
 
@@ -90,9 +97,7 @@ static NSMutableDictionary *cacheArtist;
     for (NSString *prefix in prefixes) {
         
         NSRange range = [result rangeOfString:prefix];
-        
         if (range.location == 0) {
-            
             result = [result substringFromIndex:range.length];
             break;
         }
@@ -128,9 +133,7 @@ static NSMutableDictionary *cacheArtist;
     NSString *result = str;
     
     NSRange search = [str rangeOfString:aVirer];
-    
     if (search.location != NSNotFound) {
-        
         result = [result substringToIndex:search.location];
         result = [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
