@@ -58,7 +58,7 @@ static NSMutableDictionary *cacheArtist;
     result = [HPMusicHelper cleanParenthese:result];
     
     //01, title
-    NSRange rangePrefixNumber = [result rangeOfString:@"^\\d{1,2}[ *,.:-]" options:NSRegularExpressionSearch];
+    NSRange rangePrefixNumber = [result rangeOfString:@"^\\d{1,2}[ *,.~:-]" options:NSRegularExpressionSearch];
     if (rangePrefixNumber.location != NSNotFound) {
         result = [result substringFromIndex:rangePrefixNumber.location+rangePrefixNumber.length];
         result = [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
