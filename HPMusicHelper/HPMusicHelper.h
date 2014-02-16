@@ -21,4 +21,6 @@
 // Ex: Loud (Deluxe Edition) => lound
 +(NSString *) cleanAlbumTitle:(NSString *) title;
 
++(NSString *) cleanAlbumTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent;
+
 @end

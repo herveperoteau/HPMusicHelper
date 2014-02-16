@@ -48,14 +48,32 @@ static NSMutableDictionary *cacheArtist;
 }
 
 +(NSString *) cleanAlbumTitle:(NSString *) title {
+
+    return [HPMusicHelper cleanAlbumTitle:title PreserveAccent:NO];
+}
+
++(NSString *) cleanAlbumTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent {
     
     NSString *result = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSLocale *locale = [NSLocale currentLocale];
     result = [result lowercaseStringWithLocale:locale];
     
-    result = [HPMusicHelper cleanAccents:result];
+    if (preserveAccent) {
+        result = [HPMusicHelper cleanAccents:result];
+    }
+    
     result = [HPMusicHelper cleanParenthese:result];
+    
+    //01, title
+    result = [HPMusicHelper cleanNumAlbumInTitle:result];
+    
+    return result;
+}
+
++(NSString *) cleanNumAlbumInTitle:(NSString *) title {
+
+    NSString *result = [NSString stringWithString:title];
     
     //01, title
     NSRange rangePrefixNumber = [result rangeOfString:@"^\\d{1,2}[ *,.~:-]" options:NSRegularExpressionSearch];
