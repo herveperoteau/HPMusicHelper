@@ -59,7 +59,7 @@ static NSMutableDictionary *cacheArtist;
     NSLocale *locale = [NSLocale currentLocale];
     result = [result lowercaseStringWithLocale:locale];
     
-    if (preserveAccent) {
+    if (!preserveAccent) {
         result = [HPMusicHelper cleanAccents:result];
     }
     
