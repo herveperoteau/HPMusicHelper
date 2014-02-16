@@ -84,7 +84,10 @@ static NSMutableDictionary *cacheArtist;
 
 +(NSString *) cleanAccents:(NSString *) item {
 
-    return [item stringByFoldingWithOptions: NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
+    NSMutableString *string = [item mutableCopy];
+    CFStringTransform((__bridge CFMutableStringRef)(string), NULL, kCFStringTransformStripCombiningMarks, NO);
+    return [NSString stringWithString:string];
+    //return [item stringByFoldingWithOptions: NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
 }
 
 //    les strokes => strokes
