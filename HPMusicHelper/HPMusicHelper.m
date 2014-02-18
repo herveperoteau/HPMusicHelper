@@ -9,46 +9,66 @@
 #import "HPMusicHelper.h"
 
 static NSMutableDictionary *cacheArtist;
+static NSMutableDictionary *cacheArtistPreserveAccent;
 
 @implementation HPMusicHelper
 
-// Ex : The Strokes => strokes
 +(NSString *) cleanArtistName:(NSString *) artist {
+    
+    return [self.class cleanArtistName:artist PreserveAccent:YES];
+}
 
+// Ex : The Strokes => strokes
++(NSString *) cleanArtistName:(NSString *) artist PreserveAccent:(BOOL)preserveAccent {
+    
     NSString *cleanResult;
     
     // check in cache
-    if (cacheArtist) {
-        
-        cleanResult = [cacheArtist valueForKey:artist];
-        
+    NSMutableDictionary *cache = cacheArtist;
+    if (preserveAccent) {
+        cache = cacheArtistPreserveAccent;
+    }
+    
+    if (cache) {
+        cleanResult = [cache valueForKey:artist];
         if (cleanResult) {
-            
             return cleanResult;
         }
     }
     
     // not in cache, calculate ...
-    cleanResult = [HPMusicHelper cleanInfos:artist];
+    cleanResult = [HPMusicHelper cleanInfos:artist PreserveAccent:preserveAccent];
     
     // save in cache
-    if (cacheArtist == nil) {
-        cacheArtist = [[NSMutableDictionary alloc] init];
+    if (cache == nil) {
+        if (preserveAccent) {
+            cacheArtistPreserveAccent = [[NSMutableDictionary alloc] init];
+            cache = cacheArtistPreserveAccent;
+        }
+        else {
+            cacheArtist = [[NSMutableDictionary alloc] init];
+            cache = cacheArtist;
+        }
     }
     
-    [cacheArtist setValue:cleanResult forKey:artist];
+    [cache setValue:cleanResult forKey:artist];
     
     return cleanResult;
 }
 
-//    Ex: Scream & Shout (feat. Britney Spears) => scream & shout
-+(NSString *) cleanSongTitle:(NSString *) title {
++(NSString *) cleanSongTitle:(NSString *) title{
     
-    return [HPMusicHelper cleanInfos:title];
+    return [self.class cleanSongTitle:title PreserveAccent:YES];
+}
+
+//    Ex: Scream & Shout (feat. Britney Spears) => scream & shout
++(NSString *) cleanSongTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent {
+    
+    return [HPMusicHelper cleanInfos:title PreserveAccent:preserveAccent];
 }
 
 +(NSString *) cleanAlbumTitle:(NSString *) title {
-
+    
     return [HPMusicHelper cleanAlbumTitle:title PreserveAccent:NO];
 }
 
@@ -72,7 +92,7 @@ static NSMutableDictionary *cacheArtist;
 }
 
 +(NSString *) cleanNumAlbumInTitle:(NSString *) title {
-
+    
     NSString *result = [NSString stringWithString:title];
     
     //01, title
@@ -86,13 +106,21 @@ static NSMutableDictionary *cacheArtist;
 }
 
 +(NSString *) cleanInfos:(NSString *) info {
+    
+    return [self.class cleanInfos:info PreserveAccent:YES];
+}
 
++(NSString *) cleanInfos:(NSString *) info PreserveAccent:(BOOL)preserveAccent {
+    
     NSString *result = [info stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSLocale *locale = [NSLocale currentLocale];
     result = [result lowercaseStringWithLocale:locale];
     
-    result = [HPMusicHelper cleanAccents:result];
+    if (!preserveAccent) {
+        result = [HPMusicHelper cleanAccents:result];
+    }
+    
     result = [HPMusicHelper cleanPrefixe:result];
     result = [HPMusicHelper cleanInfosFeat:result];
     result = [HPMusicHelper cleanParenthese:result];
@@ -101,7 +129,7 @@ static NSMutableDictionary *cacheArtist;
 }
 
 +(NSString *) cleanAccents:(NSString *) item {
-
+    
     NSMutableString *string = [item mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef)(string), NULL, kCFStringTransformStripCombiningMarks, NO);
     return [NSString stringWithString:string];

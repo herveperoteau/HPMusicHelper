@@ -14,13 +14,14 @@
 
 // Ex : The Strokes => strokes
 +(NSString *) cleanArtistName:(NSString *) artist;
++(NSString *) cleanArtistName:(NSString *) artist  PreserveAccent:(BOOL)preserveAccent;
 
 // Ex: Scream & Shout (feat. Britney Spears) => scream & shout
 +(NSString *) cleanSongTitle:(NSString *) title;
++(NSString *) cleanSongTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent;
 
 // Ex: Loud (Deluxe Edition) => lound
 +(NSString *) cleanAlbumTitle:(NSString *) title;
-
 +(NSString *) cleanAlbumTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent;
 
 @end

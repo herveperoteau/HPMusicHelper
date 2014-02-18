@@ -77,10 +77,10 @@
     XCTAssertEqualObjects(result, expected, @"cleanArtistName name=%@ %@ != %@ !!!", name, result, expected);
 }
 
-- (void)testCleanArtistDaftPunk
+- (void)testCleanArtistBeyonce
 {
-    NSString *name = @"DaftPunk";
-    NSString *expected = @"daftpunk";
+    NSString *name = @"BEYONCÉ";
+    NSString *expected = @"beyoncé";
     
     NSString *result = [HPMusicHelper cleanArtistName:name];
     
