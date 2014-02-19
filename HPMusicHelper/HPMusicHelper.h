@@ -14,7 +14,7 @@
 
 // Ex : The Strokes => strokes
 +(NSString *) cleanArtistName:(NSString *) artist;
-+(NSString *) cleanArtistName:(NSString *) artist  PreserveAccent:(BOOL)preserveAccent;
++(NSString *) cleanArtistName:(NSString *) artist PreserveAccent:(BOOL)preserveAccent PreservePrefix:(BOOL)preservcePrefix;
 
 // Ex: Scream & Shout (feat. Britney Spears) => scream & shout
 +(NSString *) cleanSongTitle:(NSString *) title;

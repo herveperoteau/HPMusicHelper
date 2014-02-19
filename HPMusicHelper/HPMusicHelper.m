@@ -15,11 +15,11 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanArtistName:(NSString *) artist {
     
-    return [self.class cleanArtistName:artist PreserveAccent:YES];
+    return [self.class cleanArtistName:artist PreserveAccent:YES PreservePrefix:YES];
 }
 
 // Ex : The Strokes => strokes
-+(NSString *) cleanArtistName:(NSString *) artist PreserveAccent:(BOOL)preserveAccent {
++(NSString *) cleanArtistName:(NSString *) artist PreserveAccent:(BOOL)preserveAccent PreservePrefix:(BOOL)preservePrefix{
     
     NSString *cleanResult;
     
@@ -37,7 +37,7 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
     }
     
     // not in cache, calculate ...
-    cleanResult = [HPMusicHelper cleanInfos:artist PreserveAccent:preserveAccent];
+    cleanResult = [HPMusicHelper cleanInfos:artist PreserveAccent:preserveAccent PreservePrefix:preservePrefix];
     
     // save in cache
     if (cache == nil) {
@@ -64,7 +64,7 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 //    Ex: Scream & Shout (feat. Britney Spears) => scream & shout
 +(NSString *) cleanSongTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent {
     
-    return [HPMusicHelper cleanInfos:title PreserveAccent:preserveAccent];
+    return [HPMusicHelper cleanInfos:title PreserveAccent:preserveAccent PreservePrefix:YES];
 }
 
 +(NSString *) cleanAlbumTitle:(NSString *) title {
@@ -107,10 +107,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanInfos:(NSString *) info {
     
-    return [self.class cleanInfos:info PreserveAccent:YES];
+    return [self.class cleanInfos:info PreserveAccent:YES PreservePrefix:YES];
 }
 
-+(NSString *) cleanInfos:(NSString *) info PreserveAccent:(BOOL)preserveAccent {
++(NSString *) cleanInfos:(NSString *) info PreserveAccent:(BOOL)preserveAccent PreservePrefix:(BOOL)preservePrefx {
     
     NSString *result = [info stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -121,7 +121,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
         result = [HPMusicHelper cleanAccents:result];
     }
     
-    result = [HPMusicHelper cleanPrefixe:result];
+    if (!preservePrefx) {
+        result = [HPMusicHelper cleanPrefixe:result];
+    }
+    
     result = [HPMusicHelper cleanInfosFeat:result];
     result = [HPMusicHelper cleanParenthese:result];
     
