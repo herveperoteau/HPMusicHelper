@@ -15,12 +15,20 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanArtistName:(NSString *) artist {
     
+    if (artist==nil) {
+        return @"";
+    }
+    
     return [self.class cleanArtistName:artist PreserveAccent:YES PreservePrefix:YES];
 }
 
 // Ex : The Strokes => strokes
 +(NSString *) cleanArtistName:(NSString *) artist PreserveAccent:(BOOL)preserveAccent PreservePrefix:(BOOL)preservePrefix{
     
+    if (artist==nil) {
+        return @"";
+    }
+
     NSString *cleanResult;
     
     // check in cache
@@ -58,22 +66,38 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanSongTitle:(NSString *) title{
     
+    if (title==nil) {
+        return @"";
+    }
+
     return [self.class cleanSongTitle:title PreserveAccent:YES];
 }
 
 //    Ex: Scream & Shout (feat. Britney Spears) => scream & shout
 +(NSString *) cleanSongTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent {
     
+    if (title==nil) {
+        return @"";
+    }
+
     return [HPMusicHelper cleanInfos:title PreserveAccent:preserveAccent PreservePrefix:YES];
 }
 
 +(NSString *) cleanAlbumTitle:(NSString *) title {
     
+    if (title==nil) {
+        return @"";
+    }
+
     return [HPMusicHelper cleanAlbumTitle:title PreserveAccent:NO];
 }
 
 +(NSString *) cleanAlbumTitle:(NSString *) title PreserveAccent:(BOOL)preserveAccent {
     
+    if (title==nil) {
+        return @"";
+    }
+
     NSString *result = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSLocale *locale = [NSLocale currentLocale];
@@ -93,6 +117,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanNumAlbumInTitle:(NSString *) title {
     
+    if (title==nil) {
+        return @"";
+    }
+
     NSString *result = [NSString stringWithString:title];
     
     //01, title
@@ -107,11 +135,19 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanInfos:(NSString *) info {
     
+    if (info==nil) {
+        return @"";
+    }
+
     return [self.class cleanInfos:info PreserveAccent:YES PreservePrefix:YES];
 }
 
 +(NSString *) cleanInfos:(NSString *) info PreserveAccent:(BOOL)preserveAccent PreservePrefix:(BOOL)preservePrefx {
     
+    if (info==nil) {
+        return @"";
+    }
+
     NSString *result = [info stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSLocale *locale = [NSLocale currentLocale];
@@ -133,6 +169,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanAccents:(NSString *) item {
     
+    if (item==nil) {
+        return @"";
+    }
+
     NSMutableString *string = [item mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef)(string), NULL, kCFStringTransformStripCombiningMarks, NO);
     return [NSString stringWithString:string];
@@ -142,6 +182,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 //    les strokes => strokes
 +(NSString *) cleanPrefixe:(NSString *) item {
     
+    if (item==nil) {
+        return @"";
+    }
+
     NSString *result = item;
     
     NSArray *prefixes = @[@"les ", @"the "];
@@ -161,6 +205,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 //    Ex: Scream & Shout (feat. Britney Spears) => Scream & Shout
 +(NSString *) cleanInfosFeat:(NSString *) title {
     
+    if (title==nil) {
+        return @"";
+    }
+
     NSString *result = title;
     
     result = [self cleanString:result after:@" ft"];  // Attention si on met ft sans l'espace ca clean Daft Punk en da !!!
@@ -171,6 +219,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanParenthese:(NSString *) title {
     
+    if (title==nil) {
+        return @"";
+    }
+
     NSString *result = title;
     
     result = [self cleanString:result after:@"("];
@@ -182,6 +234,10 @@ static NSMutableDictionary *cacheArtistPreserveAccent;
 
 +(NSString *) cleanString:(NSString *)str after:(NSString *)aVirer {
     
+    if (str==nil) {
+        return @"";
+    }
+
     NSString *result = str;
     
     NSRange search = [str rangeOfString:aVirer];
